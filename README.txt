@@ -5,9 +5,9 @@ IN DEVELOPMENT, is not a working shopping cart application yet.
 ===============
 INITIAL INFO
 
-disscosuion at...<a href="https://moodle.org/mod/forum/discuss.php?d=276975">open source e-commerce for moodle</a>
+disscosuion athttps://moodle.org/mod/forum/discuss.php?d=276975 open source e-commerce for moodle
 
-moodle tracker... https://tracker.moodle.org/ <a href="https://tracker.moodle.org/browse/MDL-48712">MDL-48712</a>
+moodle tracker... https://tracker.moodle.org/browse/MDL-48712 
 
 assume core files of moodle will be edited / required
 currently setup as "fresh install" required, and not a simple upgrade is avilable.
