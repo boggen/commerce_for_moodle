@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/oc/db" VERSION="20150104" COMMENT="XMLDB file for Moodle local/oc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+	  <TABLE NAME="ordertot_order_total" COMMENT="ordertot_order_total">
+		  <FIELDS>
+			  <FIELD NAME="order_total_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+			  <FIELD NAME="order_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="code" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="value" TYPE="number" LENGTH="15" NOTNULL="true" DEFAULT="0.0000" SEQUENCE="false" DECIMALS="4"/>
+			  <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+		  </FIELDS>
+		  <KEYS>
+			  <KEY NAME="primary" TYPE="primary" FIELDS="order_total_id"/>
+		  </KEYS>
+		  <INDEXES>
+			  <INDEX NAME="order_id" UNIQUE="false" FIELDS="order_id"/>
+		  </INDEXES>
+	  </TABLE>  
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/oc/db" VERSION="20150104" COMMENT="XMLDB file for Moodle local/oc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+	  <TABLE NAME="paygate_securews_o" COMMENT="----- FIELD NAME CHANGE FOR MOODLE ----- ----- NAME CHANGE FOR MOODLE ----- paygate_securetrading_ws_order">
+		  <FIELDS>
+			  <FIELD NAME="securews_order_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true" COMMENT="----- NAME CHANGE FOR MOODLE ----- securetrading_ws_order_id"/>
+			  <FIELD NAME="order_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="md" TYPE="char" LENGTH="1024" NOTNULL="false" SEQUENCE="false"/>
+			  <FIELD NAME="tran_reference" TYPE="char" LENGTH="127" NOTNULL="false" SEQUENCE="false" COMMENT="----- NAME CHANGE FOR MOODLE ----- transaction_reference"/>
+			  <FIELD NAME="created" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="modified" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="release_status" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
+			  <FIELD NAME="void_status" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
+			  <FIELD NAME="settle_type" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
+			  <FIELD NAME="rebate_status" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
+			  <FIELD NAME="currency_code" TYPE="char" LENGTH="3" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="total" TYPE="number" LENGTH="10" NOTNULL="true" SEQUENCE="false" DECIMALS="2"/>
+		  </FIELDS>
+		  <KEYS>
+			  <KEY NAME="primary" TYPE="primary" FIELDS="securews_order_id"/>
+		  </KEYS>
+	  </TABLE>
+	  <TABLE NAME="paygate_securews_o_tran" COMMENT="----- FIELD NAME CHANGE FOR MOODLE ----- ----- NAME CHANGE FOR MOODLE ----- paygate_securetrading_ws_order_transaction">
+		  <FIELDS>
+			  <FIELD NAME="securews_order_tran_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true" COMMENT="----- NAME CHANGE FOR MOODLE ----- securetrading_ws_order_transaction_id"/>
+			  <FIELD NAME="securews_order_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false" COMMENT="----- NAME CHANGE FOR MOODLE ----- securetrading_ws_order_id"/>
+			  <FIELD NAME="created" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="type" TYPE="char" LENGTH="8" NOTNULL="false" SEQUENCE="false"/>
+			  <FIELD NAME="amount" TYPE="number" LENGTH="10" NOTNULL="true" SEQUENCE="false" DECIMALS="2"/>
+		  </FIELDS>
+		  <KEYS>
+			  <KEY NAME="primary" TYPE="primary" FIELDS="securews_order_tran_id"/>
+		  </KEYS>
+	  </TABLE>  
+  </TABLES>
+</XMLDB>
