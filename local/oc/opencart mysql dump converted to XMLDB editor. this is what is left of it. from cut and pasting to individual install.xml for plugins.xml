@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/oc/db" VERSION="20150104" COMMENT="XMLDB file for Moodle local/oc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_oc" COMMENT="Default comment for local_oc, please edit me">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    
+    <TABLE NAME="local_oc_address" COMMENT="@@@indexs@@@ local_oc_address">
+      <FIELDS>
+        <FIELD NAME="address_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="customer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="firstname" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="lastname" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="company" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="address_1" TYPE="char" LENGTH="128" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="address_2" TYPE="char" LENGTH="128" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="city" TYPE="char" LENGTH="128" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="postcode" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="country_id" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="zone_id" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="custom_field" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="address_id"/>
+		</KEYS>
+      <INDEXES>
+        <INDEX NAME="customer_id" UNIQUE="false" FIELDS="customer_id"/>
+      </INDEXES>
+    </TABLE>
+ 
+    <TABLE NAME="local_oc_api" COMMENT="local_oc_api">
+      <FIELDS>
+        <FIELD NAME="api_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="username" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="firstname" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="lastname" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="password" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_modified" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="api_id"/>
+		</KEYS>
+    </TABLE>
+ 
+    
+
+    
+
+    <TABLE NAME="local_oc_category" COMMENT="@@@indexs@@@ local_oc_category">
+      <FIELDS>
+        <FIELD NAME="category_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="image" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="parent_id" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="top" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="column" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_modified" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="category_id"/>
+		</KEYS>	
+      <INDEXES>
+        <INDEX NAME="parent_id" UNIQUE="false" FIELDS="parent_id"/>
+      </INDEXES>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_category_desc" COMMENT="@@@indexs@@@ ----- NAME CHANGE FOR MOODLE ----- local_oc_category_description">
+      <FIELDS>
+        <FIELD NAME="category_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="language_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="meta_title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="meta_description" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="meta_keyword" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="category_id"/>
+		</KEYS>	
+      <INDEXES>
+        <INDEX NAME="name" UNIQUE="false" FIELDS="name"/>
+      </INDEXES>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_category_filter" COMMENT="@@@did not add = filter_id = opencart2.sql primary key as well@@@ local_oc_category_filter">
+      <FIELDS>
+        <FIELD NAME="category_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="filter_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="category_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_category_path" COMMENT="@@@did not add = path_id = opencart2.sql primary key as well@@@ local_oc_category_path">
+      <FIELDS>
+        <FIELD NAME="category_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="path_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="level" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="category_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_category_to_layout" COMMENT="@@@did not add = store_id = opencart2.sql primary key as well@@@ local_oc_category_to_layout">
+      <FIELDS>
+        <FIELD NAME="category_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="store_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="layout_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="category_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_category_to_store" COMMENT="@@@did not add = store_id = opencart2.sql primary key as well@@@ local_oc_category_to_store">
+      <FIELDS>
+        <FIELD NAME="category_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="store_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="category_id"/>
+		</KEYS>
+    </TABLE>
+    
+    
+    
+    <TABLE NAME="local_oc_custom_f" COMMENT="----- NAME CHANGE FOR MOODLE ----- local_oc_custom_field">
+      <FIELDS>
+        <FIELD NAME="custom_field_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="type" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="value" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="location" TYPE="char" LENGTH="7" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="custom_field_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_custom_f_cust_g" COMMENT="@@@did not add = customer_group_id = opencart2.sql primary key as well@@@ ----- NAME CHANGE FOR MOODLE ----- local_oc_custom_field_customer_group">
+      <FIELDS>
+        <FIELD NAME="custom_field_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="customer_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="required" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="custom_field_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_custom_f_desc" COMMENT="@@@did not add = language_id = opencart2.sql primary key as well@@@----- NAME CHANGE FOR MOODLE ----- local_oc_custom_field_description">
+      <FIELDS>
+        <FIELD NAME="custom_field_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="language_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="128" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="custom_field_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_custom_f_value" COMMENT="----- NAME CHANGE FOR MOODLE ----- local_oc_custom_field_value">
+      <FIELDS>
+        <FIELD NAME="custom_field_value_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="custom_field_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="custom_field_value_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_custom_f_value_desc" COMMENT="@@@did not add = language_id = opencart2.sql primary key as well@@@ ----- NAME CHANGE FOR MOODLE ----- local_oc_custom_field_value_description">
+      <FIELDS>
+        <FIELD NAME="custom_field_value_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="language_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="custom_field_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="128" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="custom_field_value_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer" COMMENT="local_oc_customer">
+      <FIELDS>
+        <FIELD NAME="customer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="customer_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="store_id" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="firstname" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="lastname" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="email" TYPE="char" LENGTH="96" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="telephone" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="fax" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="password" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="salt" TYPE="char" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="cart" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="wishlist" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="newsletter" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="address_id" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="custom_field" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="ip" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="approved" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="safe" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="token" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="customer_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer_activity" COMMENT="local_oc_customer_activity">
+      <FIELDS>
+        <FIELD NAME="activity_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="customer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="key" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="data" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="ip" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="activity_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer_ban_ip" COMMENT="@@@indexs@@@ local_oc_customer_ban_ip">
+      <FIELDS>
+        <FIELD NAME="customer_ban_ip_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="ip" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="local_oc_customer_ban_ip"/>
+		</KEYS>
+      <INDEXES>
+        <INDEX NAME="ip" UNIQUE="false" FIELDS="ip"/>
+      </INDEXES>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer_group" COMMENT="local_oc_customer_group">
+      <FIELDS>
+        <FIELD NAME="customer_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="approval" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="customer_group_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer_group_desc" COMMENT="@@@did not add = language_id = opencart2.sql primary key as well@@@----- NAME CHANGE FOR MOODLE ----- local_oc_customer_group_description">
+      <FIELDS>
+        <FIELD NAME="customer_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="language_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="customer_group_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer_history" COMMENT="local_oc_customer_history">
+      <FIELDS>
+        <FIELD NAME="customer_history_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="customer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="comment" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="customer_history_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer_ip" COMMENT="@@@indexs@@@ local_oc_customer_ip">
+      <FIELDS>
+        <FIELD NAME="customer_ip_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="customer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="ip" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="customer_ip_id"/>
+		</KEYS>
+      <INDEXES>
+        <INDEX NAME="ip" UNIQUE="false" FIELDS="ip"/>
+      </INDEXES>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer_login" COMMENT="@@@indexs@@@ local_oc_customer_login">
+      <FIELDS>
+        <FIELD NAME="customer_login_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="email" TYPE="char" LENGTH="96" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="ip" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="total" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_modified" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="customer_login_id"/>
+		</KEYS>
+      <INDEXES>
+        <INDEX NAME="email" UNIQUE="false" FIELDS="email"/>
+        <INDEX NAME="ip" UNIQUE="false" FIELDS="ip"/>
+      </INDEXES>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer_online" COMMENT="local_oc_customer_online">
+      <FIELDS>
+        <FIELD NAME="ip" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="customer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="url" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="referer" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="ip"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer_reward" COMMENT="local_oc_customer_reward">
+      <FIELDS>
+        <FIELD NAME="customer_reward_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="customer_id" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="order_id" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="points" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="customer_reward_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_customer_tran" COMMENT="----- NAME CHANGE FOR MOODLE ----- local_oc_customer_transaction">
+      <FIELDS>
+        <FIELD NAME="customer_transaction_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="customer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="order_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="amount" TYPE="number" LENGTH="15" NOTNULL="true" SEQUENCE="false" DECIMALS="4"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="customer_transaction_id"/>
+		</KEYS>
+    </TABLE>
+    
+    <TABLE NAME="local_oc_event" COMMENT="local_oc_event">
+      <FIELDS>
+        <FIELD NAME="event_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="trigger" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="action" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="event_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_extension" COMMENT="local_oc_extension">
+      <FIELDS>
+        <FIELD NAME="extension_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="type" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="extension_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_filter" COMMENT="local_oc_filter">
+      <FIELDS>
+        <FIELD NAME="filter_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="filter_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="filter_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_filter_desc" COMMENT="@@@did not add = language_id = opencart2.sql primary key as well@@@----- NAME CHANGE FOR MOODLE ----- local_oc_filter_description">
+      <FIELDS>
+        <FIELD NAME="filter_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="language_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="filter_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="filter_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_filter_group" COMMENT="local_oc_filter_group">
+      <FIELDS>
+        <FIELD NAME="filter_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="filter_group_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_filter_group_desc" COMMENT="@@@did not add = language_id = opencart2.sql primary key as well@@@----- NAME CHANGE FOR MOODLE ----- local_oc_filter_group_description">
+      <FIELDS>
+        <FIELD NAME="filter_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="language_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="filter_group_id"/>
+		</KEYS>
+    </TABLE>
+    
+    
+    <TABLE NAME="local_oc_language" COMMENT="@@@indexs@@@ local_oc_language">
+      <FIELDS>
+        <FIELD NAME="language_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="5" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="locale" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="image" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="directory" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="language_id"/>
+		</KEYS>
+      <INDEXES>
+        <INDEX NAME="name" UNIQUE="false" FIELDS="name"/>
+      </INDEXES>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_layout" COMMENT="local_oc_layout">
+      <FIELDS>
+        <FIELD NAME="layout_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="layout_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_layout_module" COMMENT="local_oc_layout_module">
+      <FIELDS>
+        <FIELD NAME="layout_module_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="layout_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="position" TYPE="char" LENGTH="14" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="layout_module_id"/>
+		</KEYS>
+    </TABLE>
+    
+
+	
+    <TABLE NAME="local_oc_manufact" COMMENT="----- NAME CHANGE FOR MOODLE ----- local_oc_manufacturer">
+      <FIELDS>
+        <FIELD NAME="manufacturer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="image" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="manufacturer_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_manufact_to_store" COMMENT="@@@did not add = store_id = opencart2.sql primary key as well@@@ ----- NAME CHANGE FOR MOODLE ----- local_oc_manufacturer_to_store">
+      <FIELDS>
+        <FIELD NAME="manufacturer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="store_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="information_id"/>
+		</KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_marketing" COMMENT="local_oc_marketing">
+      <FIELDS>
+        <FIELD NAME="marketing_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="clicks" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="marketing_id"/>
+	  </KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_modification" COMMENT="local_oc_modification">
+      <FIELDS>
+        <FIELD NAME="modification_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="author" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="version" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="link" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="xml" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="modification_id"/>
+	  </KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_module" COMMENT="local_oc_module">
+      <FIELDS>
+        <FIELD NAME="module_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="setting" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="module_id"/>
+	  </KEYS>
+    </TABLE>
+    
+    
+    
+    
+    
+    
+	  <TABLE NAME="local_oc_recu" COMMENT="----- NAME CHANGE FOR MOODLE ----- local_oc_recurring">
+		  <FIELDS>
+			  <FIELD NAME="recurring_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+			  <FIELD NAME="price" TYPE="number" LENGTH="10" NOTNULL="true" SEQUENCE="false" DECIMALS="4"/>
+			  <FIELD NAME="frequency" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="duration" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="cycle" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="trial_status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="trial_price" TYPE="number" LENGTH="10" NOTNULL="true" SEQUENCE="false" DECIMALS="4"/>
+			  <FIELD NAME="trial_frequency" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="trial_duration" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="trial_cycle" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="sort_order" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+		  </FIELDS>
+		  <KEYS>
+			  <KEY NAME="primary" TYPE="primary" FIELDS="recurring_id"/>
+		  </KEYS>
+	  </TABLE>
+	  
+	  <TABLE NAME="local_oc_recu_desc" COMMENT="@@@did not add = language_id = opencart2.sql primary key as well@@@ ----- NAME CHANGE FOR MOODLE ----- local_oc_recurring_description">
+		  <FIELDS>
+			  <FIELD NAME="recurring_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="language_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+		  </FIELDS>
+		  <KEYS>
+			  <KEY NAME="primary" TYPE="primary" FIELDS="recurring_id"/>
+		  </KEYS>
+	  </TABLE>   
+	  
+    <TABLE NAME="local_oc_return" COMMENT="(((DATE TIME = DEFAULT = NONO)))local_oc_return">
+      <FIELDS>
+        <FIELD NAME="return_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="order_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="product_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="customer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="firstname" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="lastname" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="email" TYPE="char" LENGTH="96" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="telephone" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="product" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="model" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="quantity" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="opened" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="return_reason_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="return_action_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="return_status_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="comment" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="date_ordered" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT=" xlmdb editer complained about DEFAULT=0000-00-00 "/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_modified" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="return_id"/>
+	  </KEYS>
+    </TABLE>
+    
+    <TABLE NAME="local_oc_return_history" COMMENT="local_oc_return_history">
+      <FIELDS>
+        <FIELD NAME="return_history_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="return_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="return_status_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="notify" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="comment" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="return_history_id"/>
+	  </KEYS>
+    </TABLE>
+
+    
+    
+	  
+	  
+	  
+	  	
+    <TABLE NAME="local_oc_setting" COMMENT="local_oc_setting">
+      <FIELDS>
+        <FIELD NAME="setting_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="store_id" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="key" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="value" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="serialized" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="setting_id"/>
+	  </KEYS>
+    </TABLE>
+    
+    
+    
+    <TABLE NAME="local_oc_tax_rate_cust_g" COMMENT="@@@did not add = customer_group_id = opencart2.sql primary key as well@@@ ----- NAME CHANGE FOR MOODLE ----- local_oc_tax_rate_to_customer_group">
+	  <FIELDS>
+		  <FIELD NAME="tax_rate_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+		  <FIELD NAME="customer_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+	  </FIELDS>
+	  <KEYS>
+		  <KEY NAME="primary" TYPE="primary" FIELDS="tax_rate_id"/>
+	  </KEYS>
+	</TABLE> 
+	
+    <TABLE NAME="local_oc_tax_rule" COMMENT="local_oc_tax_rule">
+      <FIELDS>
+        <FIELD NAME="tax_rule_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="tax_class_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="tax_rate_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="based" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="priority" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="tax_rule_id"/>
+	  </KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_upload" COMMENT="local_oc_upload">
+      <FIELDS>
+        <FIELD NAME="upload_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="filename" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="local_oc_upload"/>
+	  </KEYS>
+    </TABLE>
+    
+    <TABLE NAME="local_oc_user" COMMENT="local_oc_user">
+      <FIELDS>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="user_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="username" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="password" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="salt" TYPE="char" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="firstname" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="lastname" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="email" TYPE="char" LENGTH="96" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="image" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="ip" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="user_id"/>
+	  </KEYS>
+    </TABLE>
+	
+    <TABLE NAME="local_oc_user_group" COMMENT="local_oc_user_group">
+      <FIELDS>
+        <FIELD NAME="user_group_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="permission" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="user_group_id"/>
+	  </KEYS>
+    </TABLE>
+    
+    
+    
+  </TABLES>
+</XMLDB>

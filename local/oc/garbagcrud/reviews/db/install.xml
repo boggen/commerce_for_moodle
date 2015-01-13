@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/oc/db" VERSION="20150104" COMMENT="XMLDB file for Moodle local/oc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+	  <TABLE NAME="local_oc_review" COMMENT="@@@indexs@@@ local_oc_review">
+		  <FIELDS>
+			  <FIELD NAME="review_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="true"/>
+			  <FIELD NAME="product_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="customer_id" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="author" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="text" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="rating" TYPE="int" LENGTH="9" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			  <FIELD NAME="date_added" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+			  <FIELD NAME="date_modified" TYPE="datetime" NOTNULL="true" SEQUENCE="false"/>
+		  </FIELDS>
+		  <KEYS>
+			  <KEY NAME="primary" TYPE="primary" FIELDS="review_id"/>
+		  </KEYS>
+		  <INDEXES>
+			  <INDEX NAME="product_id" UNIQUE="false" FIELDS="product_id"/>
+		  </INDEXES>
+	  </TABLE>  
+  </TABLES>
+</XMLDB>
