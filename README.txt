@@ -23,7 +23,7 @@ assume complete re-write of code coming from opencart, so as to adjust to moodle
 Commerce = GPL 3 or higher lisence. (same lisence type as moodle and opencart)
 
 ==============
-CURRENT STATUS 1/12/2015
+CURRENT STATUS 1/14/2015
 
 ---used advance renamer www.advancedrenamer.com to renamed all files in opencart to reflect what folder they are in. 
 ---to many folder depths, got tired of clicking through the folders. easier to just add the folder name to each file.
