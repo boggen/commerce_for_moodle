@@ -3094,5 +3094,302 @@
         <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
       </KEYS>
     </TABLE>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	<TABLE NAME="checkout" COMMENT="Instances of checkingout plugins used in courses, fields marked as custom have a plugin defined meaning, core does not touch them. Create a new linked table if you need even more custom fields.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="checkout" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0..9 are system constants, 0 means active checkingout, see ENROL_STATUS_* constants, plugins may define own status greater than 10"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="order of checkout plugins in each course"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Optional instance name"/>
+        <FIELD NAME="checkoutperiod" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - checkingout duration"/>
+        <FIELD NAME="checkoutstartdate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - start of self checkingout"/>
+        <FIELD NAME="checkoutenddate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - end of checkingout"/>
+        <FIELD NAME="expirynotify" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - notify users before expiration"/>
+        <FIELD NAME="expirythreshold" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - when should be the participants notified"/>
+        <FIELD NAME="notifyall" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - Notify both participant and person responsible for checkingouts"/>
+        <FIELD NAME="password" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - checkingout or access password"/>
+        <FIELD NAME="cost" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - checkingout cost"/>
+        <FIELD NAME="currency" TYPE="char" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - cost currency"/>
+        <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - the default role given to participants who self-checkout"/>
+        <FIELD NAME="customint1" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint2" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint3" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint4" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint5" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint6" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint7" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint8" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customchar1" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar2" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar3" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customdec1" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customdec2" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customtext1" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext2" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext3" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext4" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="checkout" UNIQUE="false" FIELDS="checkout"/>
+      </INDEXES>
+    </TABLE>
+	<TABLE NAME="ordertot" COMMENT="Instances of ordertotal plugins used in courses, fields marked as custom have a plugin defined meaning, core does not touch them. Create a new linked table if you need even more custom fields.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="ordertot" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0..9 are system constants, 0 means active ordertotal, see ENROL_STATUS_* constants, plugins may define own status greater than 10"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="order of ordertot plugins in each course"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Optional instance name"/>
+        <FIELD NAME="ordertotperiod" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - ordertotal duration"/>
+        <FIELD NAME="ordertotstartdate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - start of self ordertotal"/>
+        <FIELD NAME="ordertotenddate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - end of ordertotal"/>
+        <FIELD NAME="expirynotify" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - notify users before expiration"/>
+        <FIELD NAME="expirythreshold" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - when should be the participants notified"/>
+        <FIELD NAME="notifyall" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - Notify both participant and person responsible for ordertotals"/>
+        <FIELD NAME="password" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - ordertotal or access password"/>
+        <FIELD NAME="cost" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - ordertotal cost"/>
+        <FIELD NAME="currency" TYPE="char" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - cost currency"/>
+        <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - the default role given to participants who self-ordertot"/>
+        <FIELD NAME="customint1" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint2" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint3" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint4" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint5" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint6" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint7" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint8" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customchar1" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar2" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar3" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customdec1" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customdec2" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customtext1" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext2" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext3" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext4" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ordertot" UNIQUE="false" FIELDS="ordertot"/>
+      </INDEXES>
+    </TABLE>
+	<TABLE NAME="paygate" COMMENT="Instances of paymentgateway plugins used in courses, fields marked as custom have a plugin defined meaning, core does not touch them. Create a new linked table if you need even more custom fields.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="paygate" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0..9 are system constants, 0 means active paymentgateway, see ENROL_STATUS_* constants, plugins may define own status greater than 10"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="order of paygate plugins in each course"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Optional instance name"/>
+        <FIELD NAME="paygateperiod" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - paymentgateway duration"/>
+        <FIELD NAME="paygatestartdate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - start of self paymentgateway"/>
+        <FIELD NAME="paygateenddate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - end of paymentgateway"/>
+        <FIELD NAME="expirynotify" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - notify users before expiration"/>
+        <FIELD NAME="expirythreshold" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - when should be the participants notified"/>
+        <FIELD NAME="notifyall" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - Notify both participant and person responsible for paymentgateways"/>
+        <FIELD NAME="password" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - paymentgateway or access password"/>
+        <FIELD NAME="cost" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - paymentgateway cost"/>
+        <FIELD NAME="currency" TYPE="char" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - cost currency"/>
+        <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - the default role given to participants who self-paygate"/>
+        <FIELD NAME="customint1" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint2" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint3" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint4" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint5" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint6" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint7" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint8" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customchar1" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar2" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar3" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customdec1" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customdec2" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customtext1" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext2" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext3" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext4" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="paygate" UNIQUE="false" FIELDS="paygate"/>
+      </INDEXES>
+    </TABLE>
+	<TABLE NAME="prodinfo" COMMENT="Instances of productinfo plugins used in courses, fields marked as custom have a plugin defined meaning, core does not touch them. Create a new linked table if you need even more custom fields.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="prodinfo" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0..9 are system constants, 0 means active productinfo, see ENROL_STATUS_* constants, plugins may define own status greater than 10"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="order of prodinfo plugins in each course"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Optional instance name"/>
+        <FIELD NAME="prodinfoperiod" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - productinfo duration"/>
+        <FIELD NAME="prodinfostartdate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - start of self productinfo"/>
+        <FIELD NAME="prodinfoenddate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - end of productinfo"/>
+        <FIELD NAME="expirynotify" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - notify users before expiration"/>
+        <FIELD NAME="expirythreshold" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - when should be the participants notified"/>
+        <FIELD NAME="notifyall" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - Notify both participant and person responsible for productinfos"/>
+        <FIELD NAME="password" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - productinfo or access password"/>
+        <FIELD NAME="cost" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - productinfo cost"/>
+        <FIELD NAME="currency" TYPE="char" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - cost currency"/>
+        <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - the default role given to participants who self-prodinfo"/>
+        <FIELD NAME="customint1" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint2" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint3" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint4" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint5" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint6" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint7" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint8" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customchar1" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar2" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar3" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customdec1" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customdec2" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customtext1" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext2" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext3" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext4" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="prodinfo" UNIQUE="false" FIELDS="prodinfo"/>
+      </INDEXES>
+    </TABLE>
+	<TABLE NAME="shipping" COMMENT="Instances of shipment plugins used in courses, fields marked as custom have a plugin defined meaning, core does not touch them. Create a new linked table if you need even more custom fields.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="shipping" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0..9 are system constants, 0 means active shipment, see ENROL_STATUS_* constants, plugins may define own status greater than 10"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="order of shipping plugins in each course"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Optional instance name"/>
+        <FIELD NAME="shippingperiod" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - shipment duration"/>
+        <FIELD NAME="shippingstartdate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - start of self shipment"/>
+        <FIELD NAME="shippingenddate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - end of shipment"/>
+        <FIELD NAME="expirynotify" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - notify users before expiration"/>
+        <FIELD NAME="expirythreshold" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - when should be the participants notified"/>
+        <FIELD NAME="notifyall" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - Notify both participant and person responsible for shipments"/>
+        <FIELD NAME="password" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - shipment or access password"/>
+        <FIELD NAME="cost" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - shipment cost"/>
+        <FIELD NAME="currency" TYPE="char" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - cost currency"/>
+        <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - the default role given to participants who self-shipping"/>
+        <FIELD NAME="customint1" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint2" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint3" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint4" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint5" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint6" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint7" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint8" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customchar1" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar2" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar3" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customdec1" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customdec2" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customtext1" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext2" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext3" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext4" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="shipping" UNIQUE="false" FIELDS="shipping"/>
+      </INDEXES>
+    </TABLE>
+	<TABLE NAME="storinfo" COMMENT="Instances of storemultiinfo plugins used in courses, fields marked as custom have a plugin defined meaning, core does not touch them. Create a new linked table if you need even more custom fields.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="storinfo" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0..9 are system constants, 0 means active storemultiinfo, see ENROL_STATUS_* constants, plugins may define own status greater than 10"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="order of storinfo plugins in each course"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Optional instance name"/>
+        <FIELD NAME="storinfoperiod" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - storemultiinfo duration"/>
+        <FIELD NAME="storinfostartdate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - start of self storemultiinfo"/>
+        <FIELD NAME="storinfoenddate" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - end of storemultiinfo"/>
+        <FIELD NAME="expirynotify" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - notify users before expiration"/>
+        <FIELD NAME="expirythreshold" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - when should be the participants notified"/>
+        <FIELD NAME="notifyall" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - Notify both participant and person responsible for storemultiinfos"/>
+        <FIELD NAME="password" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - storemultiinfo or access password"/>
+        <FIELD NAME="cost" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - storemultiinfo cost"/>
+        <FIELD NAME="currency" TYPE="char" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - cost currency"/>
+        <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Custom - the default role given to participants who self-storinfo"/>
+        <FIELD NAME="customint1" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint2" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint3" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint4" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint5" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint6" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint7" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customint8" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general int"/>
+        <FIELD NAME="customchar1" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar2" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customchar3" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general short name"/>
+        <FIELD NAME="customdec1" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customdec2" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Custom - general decimal"/>
+        <FIELD NAME="customtext1" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext2" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext3" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="customtext4" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Custom - general text"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="storinfo" UNIQUE="false" FIELDS="storinfo"/>
+      </INDEXES>
+    </TABLE>
+	
+	
+	
   </TABLES>
 </XMLDB>

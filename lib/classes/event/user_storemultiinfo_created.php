@@ -26,12 +26,12 @@ namespace core\event;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Event class for when user is storeinfoled in a course.
+ * Event class for when user is storinfoled in a course.
  *
  * @property-read array $other {
  *      Extra information about event.
  *
- *      - string storeinfo: name of storemultiinfo instance.
+ *      - string storinfo: name of storemultiinfo instance.
  * }
  *
  * @package    core
@@ -56,7 +56,7 @@ class user_storemultiinfo_created extends base {
      * @return string
      */
     public static function get_name() {
-        return get_string('eventuserstoremultiinfocreated', 'core_storeinfo');
+        return get_string('eventuserstoremultiinfocreated', 'core_storinfo');
     }
 
     /**
@@ -65,8 +65,8 @@ class user_storemultiinfo_created extends base {
      * @return string
      */
     public function get_description() {
-        return "The user with id '$this->userid' storeinfoled the user with id '$this->relateduserid' using the storemultiinfo method " .
-            "'{$this->other['storeinfo']}' in the course with id '$this->courseid'.";
+        return "The user with id '$this->userid' storinfoled the user with id '$this->relateduserid' using the storemultiinfo method " .
+            "'{$this->other['storinfo']}' in the course with id '$this->courseid'.";
     }
 
     /**
@@ -75,7 +75,7 @@ class user_storemultiinfo_created extends base {
      * @return \moodle_url
      */
     public function get_url() {
-        return new \moodle_url('/storeinfo/users.php', array('id' => $this->courseid));
+        return new \moodle_url('/storinfo/users.php', array('id' => $this->courseid));
     }
 
     /**
@@ -84,17 +84,17 @@ class user_storemultiinfo_created extends base {
      * @return string legacy event name
      */
     public static function get_legacy_eventname() {
-        return 'user_storeinfoled';
+        return 'user_storinfoled';
     }
 
     /**
-     * Return user_storeinfoled legacy event data.
+     * Return user_storinfoled legacy event data.
      *
      * @return \stdClass
      */
     protected function get_legacy_eventdata() {
         //$legacyeventdata = $this->get_record_snapshot('user_storemultiinfos', $this->objectid);
-        $legacyeventdata->storeinfo = $this->other['storeinfo'];
+        $legacyeventdata->storinfo = $this->other['storinfo'];
         $legacyeventdata->courseid = $this->courseid;
         return $legacyeventdata;
     }
@@ -105,7 +105,7 @@ class user_storemultiinfo_created extends base {
      * @return array
      */
     protected function get_legacy_logdata() {
-        return array($this->courseid, 'course', 'storeinfo', '../storeinfo/users.php?id=' . $this->courseid, $this->courseid);
+        return array($this->courseid, 'course', 'storinfo', '../storinfo/users.php?id=' . $this->courseid, $this->courseid);
     }
 
     /**
@@ -121,8 +121,8 @@ class user_storemultiinfo_created extends base {
             throw new \coding_exception('The \'relateduserid\' must be set.');
         }
 
-        if (!isset($this->other['storeinfo'])) {
-            throw new \coding_exception('The \'storeinfo\' value must be set in other.');
+        if (!isset($this->other['storinfo'])) {
+            throw new \coding_exception('The \'storinfo\' value must be set in other.');
         }
     }
 }

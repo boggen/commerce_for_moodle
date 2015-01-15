@@ -1145,7 +1145,7 @@ class core_plugin_manager {
 			'shipping' => array(
 			),
 		
-			'storeinfo' => array(
+			'storinfo' => array(
 			),
 
             'tinymce' => array(

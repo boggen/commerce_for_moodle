@@ -930,8 +930,8 @@ $capabilities = array(
 			'manager' => CAP_ALLOW,
 		)
 	),
-	/* review course storeinfoments - no group restrictions, it is really full access to all participants info*/
-	'moodle/course:storeinforeview' => array(
+	/* review course storinfoments - no group restrictions, it is really full access to all participants info*/
+	'moodle/course:storinforeview' => array(
 
 		'riskbitmask' => RISK_PERSONAL,
 
@@ -942,8 +942,8 @@ $capabilities = array(
 			'manager' => CAP_ALLOW,
 		)
 	),
-	/* add, remove, hide storeinfo instances in courses */
-	'moodle/course:storeinfoconfig' => array(
+	/* add, remove, hide storinfo instances in courses */
+	'moodle/course:storinfoconfig' => array(
 
 		'riskbitmask' => RISK_PERSONAL,
 

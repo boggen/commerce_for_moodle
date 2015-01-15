@@ -235,17 +235,17 @@ class helper {
 			'value' => join('<br />', $shipmentlines)
             );
         }
-		//storeinfo 
+		//storinfo 
         if ($course->can_review_storemultiinfos()) {
             $paymentgatwaylines = array();
-            $instances = \storeinfo_get_instances($course->id, true);
-            $plugins = \storeinfo_get_plugins(true);
+            $instances = \storinfo_get_instances($course->id, true);
+            $plugins = \storinfo_get_plugins(true);
             foreach ($instances as $instance) {
-                if (!isset($plugins[$instance->storeinfo])) {
+                if (!isset($plugins[$instance->storinfo])) {
                     // Weird.
                     continue;
                 }
-                $plugin = $plugins[$instance->storeinfo];
+                $plugin = $plugins[$instance->storinfo];
                 $storemultiinfolines[] = $plugin->get_instance_name($instance);
             }
             $details['storemultiinfomethods'] = array(
@@ -533,11 +533,11 @@ class helper {
 			'string' => \get_string('shippingledusers', 'shipping')
             );
         }
-		// Permissions storeinfo.
-        if ($course->can_review_storeinfoments()) {
-            $actions['storeinfoledusers'] = array(
-			'url' => new \moodle_url('/storeinfo/users.php', array('id' => $course->id)),
-			'string' => \get_string('storeinfoledusers', 'storeinfo')
+		// Permissions storinfo.
+        if ($course->can_review_storinfoments()) {
+            $actions['storinfoledusers'] = array(
+			'url' => new \moodle_url('/storinfo/users.php', array('id' => $course->id)),
+			'string' => \get_string('storinfoledusers', 'storinfo')
             );
         }
 		*/

@@ -489,17 +489,17 @@ if ($hassiteconfig){
         /** @var \core\plugininfo\shipping $plugin */
         $plugin->load_settings($ADMIN, 'shipments', $hassiteconfig);
     }
-// storeinfo plugins
-    $ADMIN->add('modules', new admin_category('storemultiinfos', new lang_string('storemultiinfos', 'storeinfo')));
-    $temp = new admin_settingpage('managestoreinfos', new lang_string('managestoreinfos', 'storeinfo'));
-    $temp->add(new admin_setting_managestoreinfos());
+// storinfo plugins
+    $ADMIN->add('modules', new admin_category('storemultiinfos', new lang_string('storemultiinfos', 'storinfo')));
+    $temp = new admin_settingpage('managestorinfos', new lang_string('managestorinfos', 'storinfo'));
+    $temp->add(new admin_setting_managestorinfos());
     $ADMIN->add('storemultiinfos', $temp);
 	
-    $temp = new admin_externalpage('storeinfotestsettings', get_string('testsettings', 'core_storeinfo'), new moodle_url("/storeinfo/test_settings.php"), 'moodle/site:config', true);
+    $temp = new admin_externalpage('storinfotestsettings', get_string('testsettings', 'core_storinfo'), new moodle_url("/storinfo/test_settings.php"), 'moodle/site:config', true);
     $ADMIN->add('storemultiinfos', $temp);
 	
-    foreach(core_plugin_manager::instance()->get_plugins_of_type('storeinfo') as $plugin) {
-        /** @var \core\plugininfo\storeinfo $plugin */
+    foreach(core_plugin_manager::instance()->get_plugins_of_type('storinfo') as $plugin) {
+        /** @var \core\plugininfo\storinfo $plugin */
         $plugin->load_settings($ADMIN, 'storemultiinfos', $hassiteconfig);
     }
 }

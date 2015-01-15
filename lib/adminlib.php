@@ -6718,13 +6718,13 @@ class admin_setting_manageshippings extends admin_setting {
  * @copyright 2010 Petr Skoda {@link http://skodak.org}
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class admin_setting_managestoreinfos extends admin_setting {
+class admin_setting_managestorinfos extends admin_setting {
     /**
      * Calls parent::__construct with specific arguments
      */
     public function __construct() {
         $this->nosave = true;
-        parent::__construct('storeinfosui', get_string('managestoreinfos', 'storeinfo'), '', '');
+        parent::__construct('storinfosui', get_string('managestorinfos', 'storinfo'), '', '');
     }
 	
     /**
@@ -6756,7 +6756,7 @@ class admin_setting_managestoreinfos extends admin_setting {
     }
 	
     /**
-     * Checks if $query is one of the available storeinfo plugins
+     * Checks if $query is one of the available storinfo plugins
 		*
      * @param string $query The string to search for
      * @return bool Returns true if found, false if not
@@ -6767,9 +6767,9 @@ class admin_setting_managestoreinfos extends admin_setting {
         }
 		
         $query = core_text::strtolower($query);
-        $storeinfos = storeinfo_get_plugins(false);
-        foreach ($storeinfos as $name=>$storeinfo) {
-            $localised = get_string('pluginname', 'storeinfo_'.$name);
+        $storinfos = storinfo_get_plugins(false);
+        foreach ($storinfos as $name=>$storinfo) {
+            $localised = get_string('pluginname', 'storinfo_'.$name);
             if (strpos(core_text::strtolower($name), $query) !== false) {
                 return true;
             }
@@ -6797,32 +6797,32 @@ class admin_setting_managestoreinfos extends admin_setting {
         $strenable    = get_string('enable');
         $strdisable   = get_string('disable');
         $struninstall = get_string('uninstallplugin', 'core_admin');
-        $strusage     = get_string('storeinfousage', 'storeinfo');
+        $strusage     = get_string('storinfousage', 'storinfo');
         $strversion   = get_string('version');
-        $strtest      = get_string('testsettings', 'core_storeinfo');
+        $strtest      = get_string('testsettings', 'core_storinfo');
 		
         $pluginmanager = core_plugin_manager::instance();
 		
-        $storeinfos_available = storeinfo_get_plugins(false);
-        $active_storeinfos    = storeinfo_get_plugins(true);
+        $storinfos_available = storinfo_get_plugins(false);
+        $active_storinfos    = storinfo_get_plugins(true);
 		
-        $allstoreinfos = array();
-        foreach ($active_storeinfos as $key=>$storeinfo) {
-            $allstoreinfos[$key] = true;
+        $allstorinfos = array();
+        foreach ($active_storinfos as $key=>$storinfo) {
+            $allstorinfos[$key] = true;
         }
-        foreach ($storeinfos_available as $key=>$storeinfo) {
-            $allstoreinfos[$key] = true;
+        foreach ($storinfos_available as $key=>$storinfo) {
+            $allstorinfos[$key] = true;
         }
         // Now find all borked plugins and at least allow then to uninstall.
-        $condidates = $DB->get_fieldset_sql("SELECT DISTINCT storeinfo FROM {storeinfo}");
+        $condidates = $DB->get_fieldset_sql("SELECT DISTINCT storinfo FROM {storinfo}");
         foreach ($condidates as $candidate) {
-            if (empty($allstoreinfos[$candidate])) {
-                $allstoreinfos[$candidate] = true;
+            if (empty($allstorinfos[$candidate])) {
+                $allstorinfos[$candidate] = true;
             }
         }
 		
-        $return = $OUTPUT->heading(get_string('actstoreinfoshhdr', 'storeinfo'), 3, 'main', true);
-        $return .= $OUTPUT->box_start('generalbox storeinfosui');
+        $return = $OUTPUT->heading(get_string('actstorinfoshhdr', 'storinfo'), 3, 'main', true);
+        $return .= $OUTPUT->box_start('generalbox storinfosui');
 		
         $table = new html_table();
         $table->head  = array(get_string('name'), $strusage, $strversion, $strenable, $strup.'/'.$strdown, $strsettings, $strtest, $struninstall);
@@ -6831,22 +6831,22 @@ class admin_setting_managestoreinfos extends admin_setting {
         $table->attributes['class'] = 'admintable generaltable';
         $table->data  = array();
 		
-        // Iterate through storeinfo plugins and add to the display table.
+        // Iterate through storinfo plugins and add to the display table.
         $updowncount = 1;
-        $storeinfocount = count($active_storeinfos);
-        $url = new moodle_url('/admin/storeinfo.php', array('sesskey'=>sesskey()));
+        $storinfocount = count($active_storinfos);
+        $url = new moodle_url('/admin/storinfo.php', array('sesskey'=>sesskey()));
         $printed = array();
-        foreach($allstoreinfos as $storeinfo => $unused) {
-            $plugininfo = $pluginmanager->get_plugin_info('storeinfo_'.$storeinfo);
-            $version = get_config('storeinfo_'.$storeinfo, 'version');
+        foreach($allstorinfos as $storinfo => $unused) {
+            $plugininfo = $pluginmanager->get_plugin_info('storinfo_'.$storinfo);
+            $version = get_config('storinfo_'.$storinfo, 'version');
             if ($version === false) {
                 $version = '';
             }
 			
-            if (get_string_manager()->string_exists('pluginname', 'storeinfo_'.$storeinfo)) {
-                $name = get_string('pluginname', 'storeinfo_'.$storeinfo);
+            if (get_string_manager()->string_exists('pluginname', 'storinfo_'.$storinfo)) {
+                $name = get_string('pluginname', 'storinfo_'.$storinfo);
             } else {
-                $name = $storeinfo;
+                $name = $storinfo;
             }
             // Usage
 //===================================================================================
@@ -6857,8 +6857,8 @@ class admin_setting_managestoreinfos extends admin_setting {
 //=====below database call needs to be redone to display correct instances======
 //=====this is only a cheap hack for now to get away from nonexisting database / function calls====
 //===================================================================================		
-            $ci = $DB->count_records('storeinfo', array('storeinfo'=>$storeinfo));
-            //$cp = $DB->count_records_select('user_storemultiinfos', "storeinfoid IN (SELECT id FROM {storeinfo} WHERE storeinfo = ?)", array($storeinfo));
+            $ci = $DB->count_records('storinfo', array('storinfo'=>$storinfo));
+            //$cp = $DB->count_records_select('user_storemultiinfos', "storinfoid IN (SELECT id FROM {storinfo} WHERE storinfo = ?)", array($storinfo));
             //$usage = "$ci / $cp";
 			$usage = "$ci / 99";
 //===================================================================================
@@ -6867,14 +6867,14 @@ class admin_setting_managestoreinfos extends admin_setting {
 //===================================================================================			
             // Hide/show links.
             $class = '';
-            if (isset($active_storeinfos[$storeinfo])) {
-                $aurl = new moodle_url($url, array('action'=>'disable', 'storeinfo'=>$storeinfo));
+            if (isset($active_storinfos[$storinfo])) {
+                $aurl = new moodle_url($url, array('action'=>'disable', 'storinfo'=>$storinfo));
                 $hideshow = "<a href=\"$aurl\">";
                 $hideshow .= "<img src=\"" . $OUTPUT->pix_url('t/hide') . "\" class=\"iconsmall\" alt=\"$strdisable\" /></a>";
                 $enabled = true;
                 $displayname = $name;
-            } else if (isset($storeinfos_available[$storeinfo])) {
-                $aurl = new moodle_url($url, array('action'=>'enable', 'storeinfo'=>$storeinfo));
+            } else if (isset($storinfos_available[$storinfo])) {
+                $aurl = new moodle_url($url, array('action'=>'enable', 'storinfo'=>$storinfo));
                 $hideshow = "<a href=\"$aurl\">";
                 $hideshow .= "<img src=\"" . $OUTPUT->pix_url('t/show') . "\" class=\"iconsmall\" alt=\"$strenable\" /></a>";
                 $enabled = false;
@@ -6885,24 +6885,24 @@ class admin_setting_managestoreinfos extends admin_setting {
                 $enabled = false;
                 $displayname = '<span class="notifyproblem">'.$name.'</span>';
             }
-            if ($PAGE->theme->resolve_image_location('icon', 'storeinfo_' . $name, false)) {
-                $icon = $OUTPUT->pix_icon('icon', '', 'storeinfo_' . $name, array('class' => 'icon pluginicon'));
+            if ($PAGE->theme->resolve_image_location('icon', 'storinfo_' . $name, false)) {
+                $icon = $OUTPUT->pix_icon('icon', '', 'storinfo_' . $name, array('class' => 'icon pluginicon'));
             } else {
                 $icon = $OUTPUT->pix_icon('spacer', '', 'moodle', array('class' => 'icon pluginicon noicon'));
             }
 			
-            // Up/down link (only if storeinfo is enabled).
+            // Up/down link (only if storinfo is enabled).
             $updown = '';
             if ($enabled) {
                 if ($updowncount > 1) {
-                    $aurl = new moodle_url($url, array('action'=>'up', 'storeinfo'=>$storeinfo));
+                    $aurl = new moodle_url($url, array('action'=>'up', 'storinfo'=>$storinfo));
                     $updown .= "<a href=\"$aurl\">";
                     $updown .= "<img src=\"" . $OUTPUT->pix_url('t/up') . "\" alt=\"$strup\" class=\"iconsmall\" /></a>&nbsp;";
                 } else {
                     $updown .= "<img src=\"" . $OUTPUT->pix_url('spacer') . "\" class=\"iconsmall\" alt=\"\" />&nbsp;";
                 }
-                if ($updowncount < $storeinfocount) {
-                    $aurl = new moodle_url($url, array('action'=>'down', 'storeinfo'=>$storeinfo));
+                if ($updowncount < $storinfocount) {
+                    $aurl = new moodle_url($url, array('action'=>'down', 'storinfo'=>$storinfo));
                     $updown .= "<a href=\"$aurl\">";
                     $updown .= "<img src=\"" . $OUTPUT->pix_url('t/down') . "\" alt=\"$strdown\" class=\"iconsmall\" /></a>";
                 } else {
@@ -6922,13 +6922,13 @@ class admin_setting_managestoreinfos extends admin_setting {
 			
             // Add uninstall info.
             $uninstall = '';
-            if ($uninstallurl = core_plugin_manager::instance()->get_uninstall_url('storeinfo_'.$storeinfo, 'manage')) {
+            if ($uninstallurl = core_plugin_manager::instance()->get_uninstall_url('storinfo_'.$storinfo, 'manage')) {
                 $uninstall = html_writer::link($uninstallurl, $struninstall);
             }
 			
             $test = '';
-            if (!empty($storeinfos_available[$storeinfo]) and method_exists($storeinfos_available[$storeinfo], 'test_settings')) {
-                $testsettingsurl = new moodle_url('/storeinfo/test_settings.php', array('storeinfo'=>$storeinfo, 'sesskey'=>sesskey()));
+            if (!empty($storinfos_available[$storinfo]) and method_exists($storinfos_available[$storinfo], 'test_settings')) {
+                $testsettingsurl = new moodle_url('/storinfo/test_settings.php', array('storinfo'=>$storinfo, 'sesskey'=>sesskey()));
                 $test = html_writer::link($testsettingsurl, $strtest);
             }
 			
@@ -6939,11 +6939,11 @@ class admin_setting_managestoreinfos extends admin_setting {
             }
             $table->data[] = $row;
 			
-            $printed[$storeinfo] = true;
+            $printed[$storinfo] = true;
         }
 		
         $return .= html_writer::table($table);
-        $return .= get_string('configstoreinfoplugins', 'storeinfo').'<br />'.get_string('tablenosave', 'admin');
+        $return .= get_string('configstorinfoplugins', 'storinfo').'<br />'.get_string('tablenosave', 'admin');
         $return .= $OUTPUT->box_end();
         return highlight($query, $return);
     }

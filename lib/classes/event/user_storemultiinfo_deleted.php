@@ -26,12 +26,12 @@ namespace core\event;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Event class for when user is unstoreinfoled from a course.
+ * Event class for when user is unstorinfoled from a course.
  *
  * @property-read array $other {
  *      Extra information about event.
  *
- *      - string storeinfo: name of storemultiinfo instance.
+ *      - string storinfo: name of storemultiinfo instance.
  *      - array userstoremultiinfo: user_storemultiinfo record.
  * }
  *
@@ -57,7 +57,7 @@ class user_storemultiinfo_deleted extends base {
      * @return string
      */
     public static function get_name() {
-        return get_string('eventuserstoremultiinfodeleted', 'core_storeinfo');
+        return get_string('eventuserstoremultiinfodeleted', 'core_storinfo');
     }
 
     /**
@@ -66,8 +66,8 @@ class user_storemultiinfo_deleted extends base {
      * @return string
      */
     public function get_description() {
-        return "The user with id '$this->userid' unstoreinfoled the user with id '$this->relateduserid' using the storemultiinfo method " .
-            "'{$this->other['storeinfo']}' from the course with id '$this->courseid'.";
+        return "The user with id '$this->userid' unstorinfoled the user with id '$this->relateduserid' using the storemultiinfo method " .
+            "'{$this->other['storinfo']}' from the course with id '$this->courseid'.";
     }
 
     /**
@@ -76,7 +76,7 @@ class user_storemultiinfo_deleted extends base {
      * @return \moodle_url
      */
     public function get_url() {
-        return new \moodle_url('/storeinfo/users.php', array('id' => $this->courseid));
+        return new \moodle_url('/storinfo/users.php', array('id' => $this->courseid));
     }
 
     /**
@@ -85,11 +85,11 @@ class user_storemultiinfo_deleted extends base {
      * @return string legacy event name
      */
     public static function get_legacy_eventname() {
-        return 'user_unstoreinfoled';
+        return 'user_unstorinfoled';
     }
 
     /**
-     * Return user_unstoreinfoled legacy event data.
+     * Return user_unstorinfoled legacy event data.
      *
      * @return \stdClass
      */
@@ -103,7 +103,7 @@ class user_storemultiinfo_deleted extends base {
      * @return array
      */
     protected function get_legacy_logdata() {
-        return array($this->courseid, 'course', 'unstoreinfo', '../storeinfo/users.php?id=' . $this->courseid, $this->courseid);
+        return array($this->courseid, 'course', 'unstorinfo', '../storinfo/users.php?id=' . $this->courseid, $this->courseid);
     }
 
     /**
@@ -117,8 +117,8 @@ class user_storemultiinfo_deleted extends base {
         if (!isset($this->other['userstoremultiinfo'])) {
             throw new \coding_exception('The \'userstoremultiinfo\' value must be set in other.');
         }
-        if (!isset($this->other['storeinfo'])) {
-            throw new \coding_exception('The \'storeinfo\' value must be set in other.');
+        if (!isset($this->other['storinfo'])) {
+            throw new \coding_exception('The \'storinfo\' value must be set in other.');
         }
         if (!isset($this->relateduserid)) {
             throw new \coding_exception('The \'relateduserid\' must be set.');

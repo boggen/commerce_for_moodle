@@ -594,7 +594,7 @@ require_once($CFG->libdir .'/ordertotlib.php');      // ordertot related functio
 require_once($CFG->libdir .'/paygatelib.php');      // shippings related functions
 require_once($CFG->libdir .'/prodinfolib.php');      // prodinfo related functions
 require_once($CFG->libdir .'/shippinglib.php');      // shipping related functions
-require_once($CFG->libdir .'/storeinfolib.php');      // storeinfo related functions
+require_once($CFG->libdir .'/storinfolib.php');      // storinfo related functions
 require_once($CFG->libdir .'/pagelib.php');         // Library that defines the moodle_page class, used for $PAGE
 require_once($CFG->libdir .'/blocklib.php');        // Library for controlling blocks
 require_once($CFG->libdir .'/eventslib.php');       // Events functions

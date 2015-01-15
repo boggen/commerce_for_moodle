@@ -33,7 +33,7 @@ CURRENT STATUS 1/12/2015
 ------localhost/moodle/paygate
 ------localhost/moodle/prodinfo
 ------localhost/moodle/shipping
-------localhost/moodle/storeinfo
+------localhost/moodle/storinfo
 ---what did not fit into above, or have not yet done. is within 
 ------localhost/moodle/local/oc/garbagecrud.zip
 ---did a database dump of localhost/opencart. and imported into localhost/moodle. and then went through moodle "XMLDB editor" to adjust things to moodle requirements for database info. ((install.xml)) cut and pasted out what i could easily identify into, into above "individual plugin types above"
@@ -58,7 +58,7 @@ CURRENT STATUS 1/12/2015
 ------shipping
 ------shipment
 
-------storeinfo
+------storinfo
 ------storemultiinfo
 
 ---playing it safe with folder and file names with 8.3 format (8 characters long for name, 3 characters long for file type extension)

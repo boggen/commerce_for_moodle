@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') || die();
  * @property-read array $other {
  *      Extra information about event.
  *
- *      - string storeinfo: name of storemultiinfo instance.
+ *      - string storinfo: name of storemultiinfo instance.
  * }
  *
  * @package    core
@@ -56,7 +56,7 @@ class user_storemultiinfo_updated extends base {
      * @return string
      */
     public static function get_name() {
-        return get_string('eventuserstoremultiinfoupdated', 'core_storeinfo');
+        return get_string('eventuserstoremultiinfoupdated', 'core_storinfo');
     }
 
     /**
@@ -66,7 +66,7 @@ class user_storemultiinfo_updated extends base {
      */
     public function get_description() {
         return "The user with id '$this->userid' updated the storemultiinfo for the user with id '$this->relateduserid' using the " .
-            "storemultiinfo method '{$this->other['storeinfo']}' in the course with id '$this->courseid'.";
+            "storemultiinfo method '{$this->other['storinfo']}' in the course with id '$this->courseid'.";
     }
 
     /**
@@ -75,7 +75,7 @@ class user_storemultiinfo_updated extends base {
      * @return \moodle_url
      */
     public function get_url() {
-        return new \moodle_url('/storeinfo/editstoremultiinfo.php', array('ue' => $this->objectid));
+        return new \moodle_url('/storinfo/editstoremultiinfo.php', array('ue' => $this->objectid));
     }
 
     /**
@@ -84,17 +84,17 @@ class user_storemultiinfo_updated extends base {
      * @return string legacy event name
      */
     public static function get_legacy_eventname() {
-        return 'user_storeinfo_modified';
+        return 'user_storinfo_modified';
     }
 
     /**
-     * Return user_storeinfo_modified legacy event data.
+     * Return user_storinfo_modified legacy event data.
      *
      * @return \stdClass
      */
     protected function get_legacy_eventdata() {
         //$legacyeventdata = $this->get_record_snapshot('user_storemultiinfos', $this->objectid);
-        $legacyeventdata->storeinfo = $this->other['storeinfo'];
+        $legacyeventdata->storinfo = $this->other['storinfo'];
         $legacyeventdata->courseid = $this->courseid;
         return $legacyeventdata;
     }
@@ -107,8 +107,8 @@ class user_storemultiinfo_updated extends base {
      */
     protected function validate_data() {
         parent::validate_data();
-        if (!isset($this->other['storeinfo'])) {
-            throw new \coding_exception('The \'storeinfo\' value must be set in other.');
+        if (!isset($this->other['storinfo'])) {
+            throw new \coding_exception('The \'storinfo\' value must be set in other.');
         }
         if (!isset($this->relateduserid)) {
             throw new \coding_exception('The \'relateduserid\' must be set.');

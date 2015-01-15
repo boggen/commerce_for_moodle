@@ -22,11 +22,11 @@ INSERT INTO `moodle20141224_a`.`mdl_config` (`id`, `name`, `value`) VALUES (NULL
 INSERT INTO `moodle20141224_a`.`mdl_capabilities` (`id`, `name`, `captype`, `contextlevel`, `component`, `riskbitmask`) VALUES ('0', 'moodle/course:shippingreview', 'read', '50', 'moodle', '8');
 INSERT INTO `moodle20141224_a`.`mdl_capabilities` (`id`, `name`, `captype`, `contextlevel`, `component`, `riskbitmask`) VALUES ('0', 'moodle/course:shippingconfig', 'write', '50', 'moodle', '8');
 
-INSERT INTO `moodle20141224_a`.`mdl_role_capabilities` (`id`, `contextid`, `roleid`, `capability`, `permission`, `timemodified`, `modifierid`) VALUES (NULL, '1', '1', 'moodle/course:storeinforeview', '1', '1419965863', '2');
-INSERT INTO `moodle20141224_a`.`mdl_role_capabilities` (`id`, `contextid`, `roleid`, `capability`, `permission`, `timemodified`, `modifierid`) VALUES (NULL, '1', '1', 'moodle/course:storeinfoconfig', '1', '1419965863', '2');
-INSERT INTO `moodle20141224_a`.`mdl_config` (`id`, `name`, `value`) VALUES (NULL, 'storeinfo_plugins_enabled', '');
-INSERT INTO `moodle20141224_a`.`mdl_capabilities` (`id`, `name`, `captype`, `contextlevel`, `component`, `riskbitmask`) VALUES ('0', 'moodle/course:storeinforeview', 'read', '50', 'moodle', '8');
-INSERT INTO `moodle20141224_a`.`mdl_capabilities` (`id`, `name`, `captype`, `contextlevel`, `component`, `riskbitmask`) VALUES ('0', 'moodle/course:storeinfoconfig', 'write', '50', 'moodle', '8');
+INSERT INTO `moodle20141224_a`.`mdl_role_capabilities` (`id`, `contextid`, `roleid`, `capability`, `permission`, `timemodified`, `modifierid`) VALUES (NULL, '1', '1', 'moodle/course:storinforeview', '1', '1419965863', '2');
+INSERT INTO `moodle20141224_a`.`mdl_role_capabilities` (`id`, `contextid`, `roleid`, `capability`, `permission`, `timemodified`, `modifierid`) VALUES (NULL, '1', '1', 'moodle/course:storinfoconfig', '1', '1419965863', '2');
+INSERT INTO `moodle20141224_a`.`mdl_config` (`id`, `name`, `value`) VALUES (NULL, 'storinfo_plugins_enabled', '');
+INSERT INTO `moodle20141224_a`.`mdl_capabilities` (`id`, `name`, `captype`, `contextlevel`, `component`, `riskbitmask`) VALUES ('0', 'moodle/course:storinforeview', 'read', '50', 'moodle', '8');
+INSERT INTO `moodle20141224_a`.`mdl_capabilities` (`id`, `name`, `captype`, `contextlevel`, `component`, `riskbitmask`) VALUES ('0', 'moodle/course:storinfoconfig', 'write', '50', 'moodle', '8');
 
 CREATE TABLE `mdl_checkout` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
@@ -192,16 +192,16 @@ CREATE TABLE `mdl_shipping` (
   KEY `mdl_enro_cou_ix` (`courseid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Instances of shipping plugins used in courses, fields marke';
 
-CREATE TABLE `mdl_storeinfo` (
+CREATE TABLE `mdl_storinfo` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
-  `storeinfo` varchar(20) NOT NULL DEFAULT '',
+  `storinfo` varchar(20) NOT NULL DEFAULT '',
   `status` bigint(10) NOT NULL DEFAULT '0',
   `courseid` bigint(10) NOT NULL,
   `sortorder` bigint(10) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
-  `storeinfoperiod` bigint(10) DEFAULT '0',
-  `storeinfostartdate` bigint(10) DEFAULT '0',
-  `storeinfoenddate` bigint(10) DEFAULT '0',
+  `storinfoperiod` bigint(10) DEFAULT '0',
+  `storinfostartdate` bigint(10) DEFAULT '0',
+  `storinfoenddate` bigint(10) DEFAULT '0',
   `expirynotify` tinyint(1) DEFAULT '0',
   `expirythreshold` bigint(10) DEFAULT '0',
   `notifyall` tinyint(1) DEFAULT '0',
@@ -229,6 +229,6 @@ CREATE TABLE `mdl_storeinfo` (
   `timecreated` bigint(10) NOT NULL DEFAULT '0',
   `timemodified` bigint(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `mdl_enro_enr_ix` (`storeinfo`),
+  KEY `mdl_enro_enr_ix` (`storinfo`),
   KEY `mdl_enro_cou_ix` (`courseid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Instances of storeinfo plugins used in courses, fields marke';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Instances of storinfo plugins used in courses, fields marke';
